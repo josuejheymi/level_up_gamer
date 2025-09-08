@@ -1,0 +1,6 @@
+-registro y autenticacion de ususario
+-gestion de perfiles
+-carrito de compras
+-catalogo
+-reseñas
+-sistema de puntos por referidos

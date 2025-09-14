@@ -23,4 +23,21 @@
     </ul>
     <br>
     <p>Precio $288.990 CLP</p> <button class="btn btn-primary">Añadir al carrito</button>
+    <script>
+    function agregarAlCarrito(id, nombre, precio) {
+      let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+      
+      let productoExistente = carrito.find(p => p.id === id);
+
+      if (productoExistente) {
+        productoExistente.cantidad += 1;
+      } else {
+        carrito.push({ id, nombre, precio, cantidad: 1 });
+      }
+
+      localStorage.setItem("carrito", JSON.stringify(carrito));
+      alert(nombre + " se agregó al carrito 🛒");
+    }
+  </script>
 </body>

@@ -10,4 +10,21 @@
     <p>Se centra en los hermanos Mario y Luigi, fontaneros del Reino Champiñón, que deben rescatar a la Princesa Peach y a su reino del malvado Rey Koopa (Bowser). Bowser ha invadido el reino, transformando a sus habitantes en piedras y ladrillos mediante magia negra, y solo la Princesa Peach puede revertir el hechizo.</p>
     <br>
     <p>Precio $29.000 CLP</p> <button class="btn btn-primary">Añadir al carrito</button>
+    <script>
+    function agregarAlCarrito(id, nombre, precio) {
+      let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+      
+      let productoExistente = carrito.find(p => p.id === id);
+
+      if (productoExistente) {
+        productoExistente.cantidad += 1;
+      } else {
+        carrito.push({ id, nombre, precio, cantidad: 1 });
+      }
+
+      localStorage.setItem("carrito", JSON.stringify(carrito));
+      alert(nombre + " se agregó al carrito 🛒");
+    }
+  </script>
 </body>

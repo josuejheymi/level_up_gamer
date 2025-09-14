@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <div style="color: white;">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Mini Carrito de Compras</title>
@@ -25,5 +26,26 @@
     </div><!--row -->
   </div> <!-- .container  -->
   <script src="carrito.js"></script>
+  </div>
+  <script>
+    function mostrarCarrito() {
+      let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+      let lista = document.getElementById("lista-carrito");
+      let total = 0;
+
+      lista.innerHTML = "";
+
+      carrito.forEach(producto => {
+        lista.innerHTML += `
+          <p>${producto.nombre} - $${producto.precio} x ${producto.cantidad}</p>
+        `;
+        total += producto.precio * producto.cantidad;
+      });
+
+      document.getElementById("total").innerText = "Total: $" + total;
+    }
+
+    mostrarCarrito();
+  </script>
 </body>
 </html>

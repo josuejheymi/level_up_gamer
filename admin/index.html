@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Level-Up Gamer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .admin-container {
+            display: flex;
+            min-height: 100vh;
+            background-color: #0a0a0a;
+        }
+        
+        .admin-sidebar {
+            width: 250px;
+            background-color: #1a1a1a;
+            padding: 1.5rem;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .admin-brand {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #333;
+        }
+        
+        .admin-brand h2 {
+            color: var(--accent-blue);
+            font-family: var(--font-header);
+            margin-bottom: 0.5rem;
+        }
+        
+        .admin-brand p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .admin-menu {
+            list-style: none;
+        }
+        
+        .admin-menu li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .admin-menu a {
+            display: block;
+            padding: 0.8rem 1rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        .admin-menu a:hover,
+        .admin-menu a.active {
+            background-color: #2a2a2a;
+            color: var(--accent-green);
+        }
+        
+        .admin-menu a i {
+            margin-right: 0.5rem;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .admin-logout {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #333;
+        }
+        
+        .admin-logout a {
+            color: #ff4444;
+        }
+        
+        .admin-main {
+            flex: 1;
+            padding: 2rem;
+        }
+        
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #333;
+        }
+        
+        .admin-title {
+            color: var(--accent-blue);
+            font-family: var(--font-header);
+        }
+        
+        .admin-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .admin-card {
+            background-color: #1a1a1a;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .admin-card-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--accent-blue);
+        }
+        
+        .admin-card-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+        
+        .admin-card-text {
+            color: var(--text-secondary);
+        }
+        
+        .admin-section {
+            background-color: #1a1a1a;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .admin-section-title {
+            color: var(--accent-blue);
+            margin-bottom: 1rem;
+            font-family: var(--font-header);
+        }
+        
+        .recent-orders {
+            list-style: none;
+        }
+        
+        .recent-orders li {
+            padding: 1rem;
+            border-bottom: 1px solid #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .recent-orders li:last-child {
+            border-bottom: none;
+        }
+        
+        .order-id {
+            font-weight: bold;
+            color: var(--accent-green);
+        }
+        
+        .order-date {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .order-status {
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        .status-pending {
+            background-color: #ff9800;
+            color: #000;
+        }
+        
+        .status-completed {
+            background-color: #4caf50;
+            color: #fff;
+        }
+        
+        .status-cancelled {
+            background-color: #f44336;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <div class="admin-sidebar">
+            <div class="admin-brand">
+                <h2>LEVEL-UP</h2>
+                <p>Panel de Administración</p>
+            </div>
+            
+            <ul class="admin-menu">
+                <li><a href="index.html" class="active"><i>Stats</i> Dashboard</a></li>
+                <li><a href="productos.html"><i>🎮</i> Productos</a></li>
+                <li><a href="usuarios.html"><i>👥</i> Usuarios</a></li>
+                <li><a href="pedidos.html"><i></i> Pedidos</a></li>
+                <li><a href="configuracion.html"><i>⚙️</i> Configuración</a></li>
+            </ul>
+            
+            <div class="admin-logout">
+                <a href="#" id="logout-btn"><i>🚪</i> Cerrar Sesión</a>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="admin-main">
+            <div class="admin-header">
+                <h1 class="admin-title">Dashboard</h1>
+                <p>Bienvenido, Administrador</p>
+            </div>
+            
+            <!-- Stats Cards -->
+            <div class="admin-cards">
+                <div class="admin-card">
+                    <div class="admin-card-icon">💰</div>
+                    <h3 class="admin-card-title">$1,243,890</h3>
+                    <p class="admin-card-text">Ventas Totales</p>
+                </div>
+                
+                <div class="admin-card">
+                    <div class="admin-card-icon">📦</div>
+                    <h3 class="admin-card-title">156</h3>
+                    <p class="admin-card-text">Pedidos Hoy</p>
+                </div>
+                
+                <div class="admin-card">
+                    <div class="admin-card-icon">👥</div>
+                    <h3 class="admin-card-title">2,458</h3>
+                    <p class="admin-card-text">Usuarios Registrados</p>
+                </div>
+                
+                <div class="admin-card">
+                    <div class="admin-card-icon">🎮</div>
+                    <h3 class="admin-card-title">87</h3>
+                    <p class="admin-card-text">Productos Activos</p>
+                </div>
+            </div>
+            
+            <!-- Recent Orders -->
+            <div class="admin-section">
+                <h2 class="admin-section-title">Pedidos Recientes</h2>
+                <ul class="recent-orders">
+                    <li>
+                        <div>
+                            <span class="order-id">#ORD-7842</span>
+                            <span class="order-date"> - 15 Mar 2024</span>
+                        </div>
+                        <span class="order-status status-pending">Pendiente</span>
+                    </li>
+                    <li>
+                        <div>
+                            <span class="order-id">#ORD-7841</span>
+                            <span class="order-date"> - 15 Mar 2024</span>
+                        </div>
+                        <span class="order-status status-completed">Completado</span>
+                    </li>
+                    <li>
+                        <div>
+                            <span class="order-id">#ORD-7840</span>
+                            <span class="order-date"> - 14 Mar 2024</span>
+                        </div>
+                        <span class="order-status status-completed">Completado</span>
+                    </li>
+                    <li>
+                        <div>
+                            <span class="order-id">#ORD-7839</span>
+                            <span class="order-date"> - 14 Mar 2024</span>
+                        </div>
+                        <span class="order-status status-cancelled">Cancelado</span>
+                    </li>
+                    <li>
+                        <div>
+                            <span class="order-id">#ORD-7838</span>
+                            <span class="order-date"> - 14 Mar 2024</span>
+                        </div>
+                        <span class="order-status status-completed">Completado</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Low Stock Alert -->
+            <div class="admin-section">
+                <h2 class="admin-section-title">Productos con Stock Bajo</h2>
+                <ul class="recent-orders">
+                    <li>
+                        <div>
+                            <span class="order-id">PlayStation 5</span>
+                            <span class="order-date"> - Stock: 3 unidades</span>
+                        </div>
+                        <span class="order-status status-pending">Crítico</span>
+                    </li>
+                    <li>
+                        <div>
+                            <span class="order-id">Mouse Gamer Logitech G502</span>
+                            <span class="order-date"> - Stock: 5 unidades</span>
+                        </div>
+                        <span class="order-status status-pending">Bajo</span>
+                    </li>
+                    <li>
+                        <div>
+                            <span class="order-id">Auriculares HyperX Cloud II</span>
+                            <span class="order-date"> - Stock: 2 unidades</span>
+                        </div>
+                        <span class="order-status status-pending">Crítico</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Verificar si está logueado
+        if (localStorage.getItem('adminLoggedIn') !== 'true') {
+            window.location.href = 'login.html';
+        }
+        
+        // Cerrar sesión
+        document.getElementById('logout-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            localStorage.removeItem('adminLoggedIn');
+            window.location.href = 'login.html';
+        });
+    </script>
+</body>
+</html>

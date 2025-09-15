@@ -1,51 +1,364 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <div style="color: white;">
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Mini Carrito de Compras</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito - Level-Up Gamer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .cart-section {
+            padding: 4rem 0;
+        }
+        
+        .cart-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+        
+        .cart-items {
+            background-color: #1a1a1a;
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+        
+        .cart-title {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-blue);
+        }
+        
+        .cart-item {
+            display: grid;
+            grid-template-columns: 100px 1fr auto;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid #333;
+        }
+        
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+        
+        .cart-item-image {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+        
+        .cart-item-details h3 {
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+        
+        .cart-item-price {
+            color: var(--accent-green);
+            font-weight: bold;
+        }
+        
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            margin-top: 0.5rem;
+        }
+        
+        .quantity-btn {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .quantity-input {
+            width: 50px;
+            text-align: center;
+            background: none;
+            border: 1px solid #333;
+            color: var(--text-primary);
+            padding: 0.2rem;
+            margin: 0 0.5rem;
+        }
+        
+        .cart-item-remove {
+            background: none;
+            border: none;
+            color: #ff4444;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+        
+        .cart-summary {
+            background-color: #1a1a1a;
+            border-radius: 8px;
+            padding: 1.5rem;
+            height: fit-content;
+        }
+        
+        .summary-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-blue);
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+        
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 1.5rem 0;
+            padding-top: 1rem;
+            border-top: 1px solid #333;
+        }
+        
+        .checkout-btn {
+            width: 100%;
+            padding: 1rem;
+            background-color: var(--accent-blue);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .checkout-btn:hover {
+            background-color: var(--accent-green);
+            color: var(--bg-primary);
+        }
+        
+        .continue-shopping {
+            display: block;
+            text-align: center;
+            margin-top: 1rem;
+            color: var(--accent-blue);
+            text-decoration: none;
+        }
+        
+        .empty-cart {
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .empty-cart p {
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <div class="row">
-      <div class="col-8">
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>LEVEL-UP GAMER</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="productos.html">Productos</a></li>
+                    <li><a href="nosotros.html">Nosotros</a></li>
+                    <li><a href="blogs.html">Blogs</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </nav>
+            <div class="user-cart">
+                <a href="carrito.html" class="cart active">Carrito (<span id="cart-count">0</span>)</a>
+                <a href="login.html" class="login">Iniciar Sesión</a>
+            </div>
+        </div>
+    </header>
 
-        <h1>Productos disponibles</h1>
-        <div id="product-list"></div>
+    <main>
+        <section class="cart-section">
+            <div class="container">
+                <h2>Tu Carrito de Compras</h2>
+                
+                <div class="cart-container" id="cart-container">
+                    <!-- El contenido del carrito se cargará con JavaScript -->
+                </div>
+            </div>
+        </section>
+    </main>
 
-      </div><!--col-8-->
+    <footer>
+        <div class="container">
+            <div class="footer-section">
+                <h3>LEVEL-UP GAMER</h3>
+                <p>Tu tienda online de confianza para productos gamers</p>
+            </div>
+            <div class="footer-section">
+                <h4>Enlaces Rápidos</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="productos.html">Productos</a></li>
+                    <li><a href="nosotros.html">Nosotros</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <p>email: contacto@levelupgamer.cl</p>
+                <p>Teléfono: +56 9 1234 5678</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2024 Level-Up Gamer. Todos los derechos reservados.</p>
+        </div>
+    </footer>
 
-      <div class="col-4">
-        <h2>🛒 Carrito</h2>
-        <div id="cart-list"></div>
-        <button onclick="vaciarCarrito()">Vaciar Carrito</button>
-      </div> <!-- col-4 -->
-    </div><!--row -->
-  </div> <!-- .container  -->
-  <script src="carrito.js"></script>
-  </div>
-  <script>
-    function mostrarCarrito() {
-      let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-      let lista = document.getElementById("lista-carrito");
-      let total = 0;
-
-      lista.innerHTML = "";
-
-      carrito.forEach(producto => {
-        lista.innerHTML += `
-          <p>${producto.nombre} - $${producto.precio} x ${producto.cantidad}</p>
-        `;
-        total += producto.precio * producto.cantidad;
-      });
-
-      document.getElementById("total").innerText = "Total: $" + total;
-    }
-
-    mostrarCarrito();
-  </script>
+    <script>
+        // Función para cargar el carrito
+        function cargarCarrito() {
+            const cartContainer = document.getElementById('cart-container');
+            const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            
+            if (carrito.length === 0) {
+                cartContainer.innerHTML = `
+                    <div class="empty-cart">
+                        <p>Tu carrito está vacío</p>
+                        <a href="productos.html" class="btn">Seguir Comprando</a>
+                    </div>
+                `;
+                return;
+            }
+            
+            let itemsHTML = '';
+            let subtotal = 0;
+            
+            carrito.forEach(item => {
+                const itemTotal = item.precio * item.cantidad;
+                subtotal += itemTotal;
+                
+                itemsHTML += `
+                    <div class="cart-item" data-id="${item.id}">
+                        <img src="${item.imagen}" alt="${item.nombre}" class="cart-item-image">
+                        <div class="cart-item-details">
+                            <h3>${item.nombre}</h3>
+                            <p class="cart-item-price">$${item.precio.toLocaleString('es-CL')} CLP</p>
+                            <div class="cart-item-quantity">
+                                <button class="quantity-btn decrease">-</button>
+                                <input type="text" class="quantity-input" value="${item.cantidad}" readonly>
+                                <button class="quantity-btn increase">+</button>
+                            </div>
+                        </div>
+                        <button class="cart-item-remove">×</button>
+                    </div>
+                `;
+            });
+            
+            const iva = subtotal * 0.19; // 19% de IVA
+            const total = subtotal + iva;
+            
+            cartContainer.innerHTML = `
+                <div class="cart-items">
+                    <h3 class="cart-title">Productos en el carrito</h3>
+                    ${itemsHTML}
+                </div>
+                <div class="cart-summary">
+                    <h3 class="summary-title">Resumen de compra</h3>
+                    <div class="summary-item">
+                        <span>Subtotal</span>
+                        <span>$${subtotal.toLocaleString('es-CL')} CLP</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>IVA (19%)</span>
+                        <span>$${iva.toLocaleString('es-CL')} CLP</span>
+                    </div>
+                    <div class="summary-total">
+                        <span>Total</span>
+                        <span>$${total.toLocaleString('es-CL')} CLP</span>
+                    </div>
+                    <button class="checkout-btn">Proceder al Pago</button>
+                    <a href="productos.html" class="continue-shopping">Seguir comprando</a>
+                </div>
+            `;
+            
+            // Agregar eventos a los botones
+            document.querySelectorAll('.quantity-btn.decrease').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const itemElement = this.closest('.cart-item');
+                    const itemId = parseInt(itemElement.getAttribute('data-id'));
+                    actualizarCantidad(itemId, -1);
+                });
+            });
+            
+            document.querySelectorAll('.quantity-btn.increase').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const itemElement = this.closest('.cart-item');
+                    const itemId = parseInt(itemElement.getAttribute('data-id'));
+                    actualizarCantidad(itemId, 1);
+                });
+            });
+            
+            document.querySelectorAll('.cart-item-remove').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const itemElement = this.closest('.cart-item');
+                    const itemId = parseInt(itemElement.getAttribute('data-id'));
+                    eliminarItem(itemId);
+                });
+            });
+            
+            document.querySelector('.checkout-btn').addEventListener('click', function() {
+                alert('¡Gracias por tu compra! En un entorno real, serías redirigido al proceso de pago.');
+            });
+        }
+        
+        // Función para actualizar cantidad
+        function actualizarCantidad(itemId, cambio) {
+            let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            const itemIndex = carrito.findIndex(item => item.id === itemId);
+            
+            if (itemIndex !== -1) {
+                carrito[itemIndex].cantidad += cambio;
+                
+                if (carrito[itemIndex].cantidad <= 0) {
+                    carrito.splice(itemIndex, 1);
+                }
+                
+                localStorage.setItem('carrito', JSON.stringify(carrito));
+                cargarCarrito();
+                actualizarContadorCarrito();
+            }
+        }
+        
+        // Función para eliminar item
+        function eliminarItem(itemId) {
+            let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            carrito = carrito.filter(item => item.id !== itemId);
+            
+            localStorage.setItem('carrito', JSON.stringify(carrito));
+            cargarCarrito();
+            actualizarContadorCarrito();
+        }
+        
+        // Función para actualizar contador del carrito
+        function actualizarContadorCarrito() {
+            const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            const totalItems = carrito.reduce((total, item) => total + item.cantidad, 0);
+            
+            document.querySelectorAll('#cart-count').forEach(element => {
+                element.textContent = totalItems;
+            });
+        }
+        
+        // Cargar carrito cuando la página esté lista
+        document.addEventListener('DOMContentLoaded', function() {
+            cargarCarrito();
+            actualizarContadorCarrito();
+        });
+    </script>
 </body>
 </html>

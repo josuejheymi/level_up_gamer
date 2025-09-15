@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle Blog - Level-Up Gamer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .blog-detail {
+            padding: 4rem 0;
+        }
+        
+        .blog-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .blog-header {
+            margin-bottom: 2rem;
+        }
+        
+        .blog-title {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent-blue);
+        }
+        
+        .blog-meta {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+        
+        .blog-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+        
+        .blog-content {
+            line-height: 1.8;
+        }
+        
+        .blog-content p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .blog-content h3 {
+            color: var(--accent-green);
+            margin: 2rem 0 1rem;
+        }
+        
+        .back-to-blogs {
+            display: inline-block;
+            margin-top: 2rem;
+            color: var(--accent-blue);
+            text-decoration: none;
+        }
+        
+        .back-to-blogs:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>LEVEL-UP GAMER</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="productos.html">Productos</a></li>
+                    <li><a href="nosotros.html">Nosotros</a></li>
+                    <li><a href="blogs.html">Blogs</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </nav>
+            <div class="user-cart">
+                <a href="carrito.html" class="cart">Carrito (<span id="cart-count">0</span>)</a>
+                <a href="login.html" class="login">Iniciar Sesión</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="blog-detail">
+            <div class="container blog-container">
+                <div class="blog-header">
+                    <h1 class="blog-title">Los juegos más esperados del 2026</h1>
+                    <div class="blog-meta">
+                        <span>14 de septiembre 2025</span> | <span>Por: Equipo Level-Up</span> | <span>Categoría: Noticias</span>
+                    </div>
+                </div>
+                
+                <img src="img/blog1.jpg" alt="Nuevos lanzamientos" class="blog-image">
+                
+                <div class="blog-content">
+                    <p>El 2026 promete ser un año emocionante para los amantes de los videojuegos. Con la nueva generación de consolas completamente establecida y los desarrolladores aprovechando al máximo su potencia, estamos ante un año lleno de lanzamientos prometedores.</p>
+                    
+                    <h3>Grandes esperanzas: Los AAA más anticipados</h3>
+                    <p>Entre los títulos más esperados se encuentra "Eclipse", el nuevo RPG de mundo abierto de los creadores de la aclamada saga "Starfall". Con gráficos que prometen revolucionar el género y una historia épica que según los desarrolladores superará las 100 horas de gameplay, este título está generando mucha expectativa.</p>
+                    
+                    <p>Otro juego que está dando mucho que hablar es "CyberNova", la secuela del exitoso "CyberEdge". Los trailers muestran una ciudad futurista increíblemente detallada y un sistema de personalización de personajes sin precedentes.</p>
+                    
+                    <h3>Indies que prometen brillar</h3>
+                    <p>No todo son grandes producciones. El mundo indie también viene cargado de joyas prometedoras. "Starlight Drifters", un juego de exploración espacial con un arte estilo acuarela, ha ganado varios premios en festivales independientes aún antes de su lanzamiento.</p>
+                    
+                    <p>"Chrono Weaver", por su parte, mezcla elementos de puzzle y aventura con una mecánica temporal innovadora que permite alterar el pasado para cambiar el presente.</p>
+                    
+                    <h3>Chile en la escena gaming</h3>
+                    <p>Es importante destacar que los desarrolladores chilenos también tienen mucho que aportar este año. "Andean Legends", un juego inspirado en la mitología andina creado por un estudio de Santiago, ha captado la atención de varias publicaciones internacionales especializadas.</p>
+                    
+                    <p>Desde Level-Up Gamer, estaremos atentos a todos estos lanzamientos y te mantendremos informado sobre fechas de lanzamiento, ediciones especiales y eventos relacionados. ¡2024 promete ser un año increíble para los gamers!</p>
+                </div>
+                
+                <a href="blogs.html" class="back-to-blogs">← Volver a todos los blogs</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-section">
+                <h3>LEVEL-UP GAMER</h3>
+                <p>Tu tienda online de confianza para productos gamers</p>
+            </div>
+            <div class="footer-section">
+                <h4>Enlaces Rápidos</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="productos.html">Productos</a></li>
+                    <li><a href="nosotros.html">Nosotros</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <p>email: contacto@levelupgamer.cl</p>
+                <p>Teléfono: +56 9 1234 5678</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2024 Level-Up Gamer. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

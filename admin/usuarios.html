@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Usuarios - Level-Up Gamer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        /* Estilos anteriores... */
+    </style>
+</head>
+<body>
+    <!-- Código HTML anterior... -->
+
+    <script>
+        // Verificar si está logueado y es administrador
+        if (localStorage.getItem('adminLoggedIn') !== 'true') {
+            window.location.href = 'login.html';
+        } else {
+            const currentAdmin = JSON.parse(localStorage.getItem('currentAdmin') || '{}');
+            if (currentAdmin.role !== 'admin') {
+                alert('No tienes permisos para acceder a esta sección');
+                window.location.href = 'index.html';
+            }
+        }
+        
+        // Cargar usuarios desde localStorage
+        function loadUsers() {
+            const users = JSON.parse(localStorage.getItem('users') || '[]');
+            const adminUsers = JSON.parse(localStorage.getItem('adminUsers') || '[]');
+            
+            // Combinar usuarios normales y admin
+            const allUsers = [...users, ...adminUsers];
+            
+            const tableBody = document.getElementById('users-table-body');
+            tableBody.innerHTML = '';
+            
+            if (allUsers.length === 0) {
+                tableBody.innerHTML = '<tr><td colspan="7" style="text-align: center;">No hay usuarios registrados</td></tr>';
+                return;
+            }
+            
+            allUsers.forEach(user => {
+                const registerDate = user.fechaRegistro ? new Date(user.fechaRegistro).toLocaleDateString('es-CL') : 'N/A';
+                const status = user.activo === false ? 'Inactivo' : 'Activo';
+                
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${user.id}</td>
+                    <td>${user.nombre || user.name} ${user.apellidos || ''}</td>
+                    <td>${user.email}</td>
+                    <td><span class="user-role role-${user.role}">${getRoleName(user.role)}</span></td>
+                    <td>${registerDate}</td>
+                    <td>${status}</td>
+                    <td>
+                        <div class="table-actions">
+                            <button class="btn-action btn-edit" data-id="${user.id}" data-role="${user.role}">Editar</button>
+                            <button class="btn-action btn-delete" data-id="${user.id}" data-role="${user.role}">${user.activo === false ? 'Activar' : 'Desactivar'}</button>
+                        </div>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+            
+            // Agregar eventos a los botones
+            document.querySelectorAll('.btn-edit').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const userId = parseInt(this.getAttribute('data-id'));
+                    const userRole = this.getAttribute('data-role');
+                    editUser(userId, userRole);
+                });
+            });
+            
+            document.querySelectorAll('.btn-delete').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const userId = parseInt(this.getAttribute('data-id'));
+                    const userRole = this.getAttribute('data-role');
+                    toggleUserStatus(userId, userRole);
+                });
+            });
+        }
+        
+        // Obtener nombre del rol
+        function getRoleName(role) {
+            const roles = {
+                'admin': 'Administrador',
+                'seller': 'Vendedor',
+                'client': 'Cliente'
+            };
+            return roles[role] || role;
+        }
+        
+        // Cambiar estado de usuario
+        function toggleUserStatus(id, role) {
+            if (role === 'admin') {
+                // Usuario admin - modificar en adminUsers
+                const adminUsers = JSON.parse(localStorage.getItem('adminUsers') || '[]');
+                const userIndex = adminUsers.findIndex(u => u.id === id);
+                
+                if (userIndex !== -1) {
+                    if (confirm(`¿Estás seguro de que quieres ${adminUsers[userIndex].activo === false ? 'activar' : 'desactivar'} este usuario?`)) {
+                        adminUsers[userIndex].activo = adminUsers[userIndex].activo === false ? true : false;
+                        localStorage.setItem('adminUsers', JSON.stringify(adminUsers));
+                        loadUsers();
+                        alert(`Usuario ${adminUsers[userIndex].activo ? 'activado' : 'desactivado'} correctamente`);
+                    }
+                }
+            } else {
+                // Usuario normal - modificar en users
+                const users = JSON.parse(localStorage.getItem('users') || '[]');
+                const userIndex = users.findIndex(u => u.id === id);
+                
+                if (userIndex !== -1) {
+                    if (confirm(`¿Estás seguro de que quieres ${users[userIndex].activo === false ? 'activar' : 'desactivar'} este usuario?`)) {
+                        users[userIndex].activo = users[userIndex].activo === false ? true : false;
+                        localStorage.setItem('users', JSON.stringify(users));
+                        loadUsers();
+                        alert(`Usuario ${users[userIndex].activo ? 'activado' : 'desactivado'} correctamente`);
+                    }
+                }
+            }
+        }
+        
+        // Cerrar sesión
+        document.getElementById('logout-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            localStorage.removeItem('adminLoggedIn');
+            localStorage.removeItem('currentAdmin');
+            window.location.href = 'login.html';
+        });
+        
+        // Cargar usuarios al iniciar
+        document.addEventListener('DOMContentLoaded', loadUsers);
+    </script>
+</body>
+</html>

@@ -1,83 +1,353 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <title>Registro - Level-Up Gamer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="#" class="logo">LEVEL-UP<span class="logo-accent">GAMER</span></a>
-
-            <ul class="nav-menu">
-                <li class="nav-item">
-                    <a href="main.html" class="nav-link active">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">Servicios</a>
-                </li>
-                <li class="nav-item">
-                    <a href="catalogo.html" class="nav-link">Productos</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">Nosotros</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">Contacto</a>
-                </li>
-                <li class="nav-item">
-                    <a href="level_up.html" class="nav-link">Login</a>
-                </li>
-            </ul>
-            <li class="nav-item">
-                <a href="carrito.html" class="nav-link cart-icon">🛒 <span class="cart-count">0</span></a>
-            </li>   
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>LEVEL-UP GAMER</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="productos.html">Productos</a></li>
+                    <li><a href="nosotros.html">Nosotros</a></li>
+                    <li><a href="blogs.html">Blogs</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </nav>
+            <div class="user-cart">
+                <a href="carrito.html" class="cart">Carrito (<span id="cart-count">0</span>)</a>
+                <a href="login.html" class="login">Iniciar Sesión</a>
             </div>
         </div>
-    </nav>
-    
-     <div class="registro-container">
-        <div class="formulario-registro">
-            <h1>Crear Cuenta</h1>
-            <form id="registroForm">
-                <div class="form-group">
-                    <label for="nombre">Nombre completo</label>
-                    <input type="text" id="nombre" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="email">Correo electrónico</label>
-                    <input type="email" id="email" required>
-                    <div id="emailValidation" class="validation-message"></div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="password">Contraseña</label>
-                    <input type="password" id="password" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="fechaNacimiento">Fecha de nacimiento</label>
-                    <input type="date" id="fechaNacimiento" required>
-                    <div id="edadValidation" class="validation-message"></div>
-                </div>
-                
-                <button type="submit" class="btn-registro">Crear Cuenta</button>
-                
-                <div class="login-link">
-                    ¿Ya tienes cuenta? <a href="level_up.html">Inicia sesión aquí</a>
-                </div>
-            </form>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="form-container">
+                <h2 class="form-title">Crear Cuenta</h2>
+                <form id="registro-form">
+                    <div class="form-group">
+                        <label for="run">RUN (sin puntos ni guión)</label>
+                        <input type="text" id="run" name="run" placeholder="12345678-9">
+                        <div id="run-error" class="error-message"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombre" name="nombre" placeholder="Tu nombre">
+                        <div id="nombre-error" class="error-message"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="apellidos">Apellidos</label>
+                        <input type="text" id="apellidos" name="apellidos" placeholder="Tus apellidos">
+                        <div id="apellidos-error" class="error-message"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Correo Electrónico</label>
+                        <input type="email" id="email" name="email" placeholder="ejemplo@duoc.cl">
+                        <div id="email-error" class="error-message"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="fecha-nacimiento">Fecha de Nacimiento (opcional)</label>
+                        <input type="date" id="fecha-nacimiento" name="fecha-nacimiento">
+                        <div id="fecha-error" class="error-message"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="direccion">Dirección</label>
+                        <textarea id="direccion" name="direccion" placeholder="Tu dirección completa"></textarea>
+                        <div id="direccion-error" class="error-message"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Contraseña</label>
+                        <input type="password" id="password" name="password" placeholder="Mínimo 6 caracteres">
+                        <div id="password-error" class="error-message"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="confirm-password">Confirmar Contraseña</label>
+                        <input type="password" id="confirm-password" name="confirm-password" placeholder="Repite tu contraseña">
+                        <div id="confirm-password-error" class="error-message"></div>
+                    </div>
+                    
+                    <button type="submit" class="btn">Registrarse</button>
+                </form>
+                <p style="text-align: center; margin-top: 1rem;">
+                    ¿Ya tienes cuenta? <a href="login.html" style="color: var(--accent-blue);">Inicia sesión aquí</a>
+                </p>
+            </div>
         </div>
-    </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-section">
+                <h3>LEVEL-UP GAMER</h3>
+                <p>Tu tienda online de confianza para productos gamers</p>
+            </div>
+            <div class="footer-section">
+                <h4>Enlaces Rápidos</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="productos.html">Productos</a></li>
+                    <li><a href="nosotros.html">Nosotros</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <p>email: contacto@levelupgamer.cl</p>
+                <p>Teléfono: +56 9 1234 5678</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2024 Level-Up Gamer. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Inicializar usuarios si no existen
+        function inicializarUsuarios() {
+            if (!localStorage.getItem('users')) {
+                localStorage.setItem('users', JSON.stringify([]));
+            }
+        }
+
+        // Validación para formulario de registro
+        function validarRegistro(event) {
+            event.preventDefault();
+            let esValido = true;
+            
+            // Validar RUN
+            const run = document.getElementById('run').value.trim();
+            const runError = document.getElementById('run-error');
+            if (!run) {
+                runError.textContent = 'El RUN es requerido';
+                runError.style.display = 'block';
+                esValido = false;
+            } else if (run.length < 7 || run.length > 9) {
+                runError.textContent = 'El RUN debe tener entre 7 y 9 caracteres';
+                runError.style.display = 'block';
+                esValido = false;
+            } else if (!validarRunChileno(run)) {
+                runError.textContent = 'El RUN no es válido';
+                runError.style.display = 'block';
+                esValido = false;
+            } else {
+                runError.style.display = 'none';
+            }
+            
+            // Validar nombre
+            const nombre = document.getElementById('nombre').value.trim();
+            const nombreError = document.getElementById('nombre-error');
+            if (!nombre) {
+                nombreError.textContent = 'El nombre es requerido';
+                nombreError.style.display = 'block';
+                esValido = false;
+            } else if (nombre.length > 50) {
+                nombreError.textContent = 'El nombre no puede tener más de 50 caracteres';
+                nombreError.style.display = 'block';
+                esValido = false;
+            } else {
+                nombreError.style.display = 'none';
+            }
+            
+            // Validar apellidos
+            const apellidos = document.getElementById('apellidos').value.trim();
+            const apellidosError = document.getElementById('apellidos-error');
+            if (!apellidos) {
+                apellidosError.textContent = 'Los apellidos son requeridos';
+                apellidosError.style.display = 'block';
+                esValido = false;
+            } else if (apellidos.length > 100) {
+                apellidosError.textContent = 'Los apellidos no pueden tener más de 100 caracteres';
+                apellidosError.style.display = 'block';
+                esValido = false;
+            } else {
+                apellidosError.style.display = 'none';
+            }
+            
+            // Validar email
+            const email = document.getElementById('email').value.trim();
+            const emailError = document.getElementById('email-error');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const dominiosPermitidos = ['duoc.cl', 'profesor.duoc.cl', 'gmail.com'];
+            
+            if (!email) {
+                emailError.textContent = 'El email es requerido';
+                emailError.style.display = 'block';
+                esValido = false;
+            } else if (!emailRegex.test(email)) {
+                emailError.textContent = 'El formato del email no es válido';
+                emailError.style.display = 'block';
+                esValido = false;
+            } else if (email.length > 100) {
+                emailError.textContent = 'El email no puede tener más de 100 caracteres';
+                emailError.style.display = 'block';
+                esValido = false;
+            } else {
+                const dominio = email.split('@')[1];
+                if (!dominiosPermitidos.includes(dominio)) {
+                    emailError.textContent = 'Solo se permiten correos de @duoc.cl, @profesor.duoc.cl y @gmail.com';
+                    emailError.style.display = 'block';
+                    esValido = false;
+                } else {
+                    // Verificar si el email ya existe
+                    const users = JSON.parse(localStorage.getItem('users') || '[]');
+                    if (users.find(u => u.email === email)) {
+                        emailError.textContent = 'Este email ya está registrado';
+                        emailError.style.display = 'block';
+                        esValido = false;
+                    } else {
+                        emailError.style.display = 'none';
+                    }
+                }
+            }
+            
+            // Validar fecha de nacimiento (opcional)
+            const fechaNacimiento = document.getElementById('fecha-nacimiento').value;
+            const fechaError = document.getElementById('fecha-error');
+            if (fechaNacimiento) {
+                const fechaNac = new Date(fechaNacimiento);
+                const hoy = new Date();
+                let edad = hoy.getFullYear() - fechaNac.getFullYear();
+                const mes = hoy.getMonth() - fechaNac.getMonth();
+                
+                if (mes < 0 || (mes === 0 && hoy.getDate() < fechaNac.getDate())) {
+                    edad--;
+                }
+                
+                if (edad < 18) {
+                    fechaError.textContent = 'Debes ser mayor de 18 años para registrarte';
+                    fechaError.style.display = 'block';
+                    esValido = false;
+                } else {
+                    fechaError.style.display = 'none';
+                }
+            }
+            
+            // Validar dirección
+            const direccion = document.getElementById('direccion').value.trim();
+            const direccionError = document.getElementById('direccion-error');
+            if (!direccion) {
+                direccionError.textContent = 'La dirección es requerida';
+                direccionError.style.display = 'block';
+                esValido = false;
+            } else if (direccion.length > 300) {
+                direccionError.textContent = 'La dirección no puede tener más de 300 caracteres';
+                direccionError.style.display = 'block';
+                esValido = false;
+            } else {
+                direccionError.style.display = 'none';
+            }
+            
+            // Validar contraseña
+            const password = document.getElementById('password').value;
+            const passwordError = document.getElementById('password-error');
+            if (!password) {
+                passwordError.textContent = 'La contraseña es requerida';
+                passwordError.style.display = 'block';
+                esValido = false;
+            } else if (password.length < 6) {
+                passwordError.textContent = 'La contraseña debe tener al menos 6 caracteres';
+                passwordError.style.display = 'block';
+                esValido = false;
+            } else {
+                passwordError.style.display = 'none';
+            }
+            
+            // Validar confirmación de contraseña
+            const confirmPassword = document.getElementById('confirm-password').value;
+            const confirmPasswordError = document.getElementById('confirm-password-error');
+            if (!confirmPassword) {
+                confirmPasswordError.textContent = 'Debes confirmar tu contraseña';
+                confirmPasswordError.style.display = 'block';
+                esValido = false;
+            } else if (confirmPassword !== password) {
+                confirmPasswordError.textContent = 'Las contraseñas no coinciden';
+                confirmPasswordError.style.display = 'block';
+                esValido = false;
+            } else {
+                confirmPasswordError.style.display = 'none';
+            }
+            
+            if (esValido) {
+                // Guardar usuario
+                const users = JSON.parse(localStorage.getItem('users') || '[]');
+                const newUser = {
+                    id: users.length > 0 ? Math.max(...users.map(u => u.id)) + 1 : 1,
+                    run: run,
+                    nombre: nombre,
+                    apellidos: apellidos,
+                    email: email,
+                    fechaNacimiento: fechaNacimiento || null,
+                    direccion: direccion,
+                    password: password, // En un caso real, esto estaría encriptado
+                    role: "client",
+                    fechaRegistro: new Date().toISOString(),
+                    activo: true
+                };
+                
+                users.push(newUser);
+                localStorage.setItem('users', JSON.stringify(users));
+                
+                alert('Registro exitoso. Serás redirigido a la página de inicio.');
+                window.location.href = 'index.html';
+            }
+        }
+
+        // Validar RUN chileno (simplificado)
+        function validarRunChileno(run) {
+            // Eliminar puntos y guión si existen
+            run = run.replace(/\./g, '').replace(/-/g, '');
+            
+            // El RUN debe tener entre 7 y 8 dígitos más el dígito verificador
+            if (run.length < 8 || run.length > 9) return false;
+            
+            // Separar el cuerpo del dígito verificador
+            const cuerpo = run.slice(0, -1);
+            const dv = run.slice(-1).toUpperCase();
+            
+            // Calcular el dígito verificador esperado
+            let suma = 0;
+            let multiplo = 2;
+            
+            for (let i = 1; i <= cuerpo.length; i++) {
+                const index = multiplo * parseInt(run.charAt(cuerpo.length - i));
+                suma += index;
+                if (multiplo < 7) {
+                    multiplo += 1;
+                } else {
+                    multiplo = 2;
+                }
+            }
+            
+            const dvEsperado = 11 - (suma % 11);
+            let dvCalculado = dvEsperado === 11 ? '0' : dvEsperado === 10 ? 'K' : dvEsperado.toString();
+            
+            return dvCalculado === dv;
+        }
+
+        // Inicializar y asignar eventos cuando el DOM esté cargado
+        document.addEventListener('DOMContentLoaded', function() {
+            inicializarUsuarios();
+            
+            const registroForm = document.getElementById('registro-form');
+            if (registroForm) {
+                registroForm.addEventListener('submit', validarRegistro);
+            }
+        });
+    </script>
 </body>
 </html>

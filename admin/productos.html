@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Productos - Level-Up Gamer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .admin-container {
+            display: flex;
+            min-height: 100vh;
+            background-color: #0a0a0a;
+        }
+        
+        .admin-sidebar {
+            width: 250px;
+            background-color: #1a1a1a;
+            padding: 1.5rem;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .admin-brand {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #333;
+        }
+        
+        .admin-brand h2 {
+            color: var(--accent-blue);
+            font-family: var(--font-header);
+            margin-bottom: 0.5rem;
+        }
+        
+        .admin-brand p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .admin-menu {
+            list-style: none;
+        }
+        
+        .admin-menu li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .admin-menu a {
+            display: block;
+            padding: 0.8rem 1rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        .admin-menu a:hover,
+        .admin-menu a.active {
+            background-color: #2a2a2a;
+            color: var(--accent-green);
+        }
+        
+        .admin-menu a i {
+            margin-right: 0.5rem;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .admin-logout {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #333;
+        }
+        
+        .admin-logout a {
+            color: #ff4444;
+        }
+        
+        .admin-main {
+            flex: 1;
+            padding: 2rem;
+        }
+        
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #333;
+        }
+        
+        .admin-title {
+            color: var(--accent-blue);
+            font-family: var(--font-header);
+        }
+        
+        .admin-actions {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .btn-admin {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-primary {
+            background-color: var(--accent-blue);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--accent-green);
+            color: var(--bg-primary);
+        }
+        
+        .btn-secondary {
+            background-color: #333;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #444;
+        }
+        
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #1a1a1a;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .admin-table th,
+        .admin-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #333;
+        }
+        
+        .admin-table th {
+            background-color: #2a2a2a;
+            color: var(--accent-blue);
+            font-weight: bold;
+        }
+        
+        .admin-table tr:hover {
+            background-color: #2a2a2a;
+        }
+        
+        .table-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .btn-action {
+            padding: 0.3rem 0.8rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+        
+        .btn-edit {
+            background-color: #ff9800;
+            color: black;
+        }
+        
+        .btn-delete {
+            background-color: #f44336;
+            color: white;
+        }
+        
+        .stock-low {
+            color: #ff9800;
+            font-weight: bold;
+        }
+        
+        .stock-critical {
+            color: #f44336;
+            font-weight: bold;
+        }
+        
+        .stock-ok {
+            color: #4caf50;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: #1a1a1a;
+            padding: 2rem;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 600px;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #333;
+        }
+        
+        .modal-title {
+            color: var(--accent-blue);
+            font-family: var(--font-header);
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .modal-form .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <div class="admin-sidebar">
+            <div class="admin-brand">
+                <h2>LEVEL-UP</h2>
+                <p>Panel de Administración</p>
+            </div>
+            
+            <ul class="admin-menu">
+                <li><a href="index.html"><i>📊</i> Dashboard</a></li>
+                <li><a href="productos.html" class="active"><i>🎮</i> Productos</a></li>
+                <li><a href="usuarios.html"><i>👥</i> Usuarios</a></li>
+                <li><a href="pedidos.html"><i>📦</i> Pedidos</a></li>
+                <li><a href="configuracion.html"><i>⚙️</i> Configuración</a></li>
+            </ul>
+            
+            <div class="admin-logout">
+                <a href="#" id="logout-btn"><i>🚪</i> Cerrar Sesión</a>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="admin-main">
+            <div class="admin-header">
+                <h1 class="admin-title">Gestión de Productos</h1>
+                <p>Administra los productos de la tienda</p>
+            </div>
+            
+            <!-- Actions -->
+            <div class="admin-actions">
+                <button class="btn-admin btn-primary" id="add-product-btn">+ Nuevo Producto</button>
+                <button class="btn-admin btn-secondary">Exportar</button>
+                <button class="btn-admin btn-secondary">Importar</button>
+            </div>
+            
+            <!-- Products Table -->
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Categoría</th>
+                        <th>Precio</th>
+                        <th>Stock</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="products-table-body">
+                    <!-- Los productos se cargarán con JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <!-- Modal para agregar/editar producto -->
+    <div class="modal" id="product-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modal-title">Nuevo Producto</h2>
+                <button class="close-modal" id="close-modal">&times;</button>
+            </div>
+            
+            <form class="modal-form" id="product-form">
+                <input type="hidden" id="product-id">
+                
+                <div class="form-group">
+                    <label for="product-name">Nombre del Producto</label>
+                    <input type="text" id="product-name" name="product-name" required>
+                    <div id="product-name-error" class="error-message"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="product-category">Categoría</label>
+                    <select id="product-category" name="product-category" required>
+                        <option value="">Selecciona una categoría</option>
+                        <option value="juegos-mesa">Juegos de Mesa</option>
+                        <option value="accesorios">Accesorios</option>
+                        <option value="consolas">Consolas</option>
+                        <option value="computadores">Computadores Gamers</option>
+                        <option value="sillas">Sillas Gamers</option>
+                        <option value="mouse">Mouse</option>
+                        <option value="mousepad">Mousepad</option>
+                        <option value="poleras">Poleras Personalizadas</option>
+                    </select>
+                    <div id="product-category-error" class="error-message"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="product-price">Precio (CLP)</label>
+                    <input type="number" id="product-price" name="product-price" min="0" step="0.01" required>
+                    <div id="product-price-error" class="error-message"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="product-stock">Stock</label>
+                    <input type="number" id="product-stock" name="product-stock" min="0" required>
+                    <div id="product-stock-error" class="error-message"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="product-critical-stock">Stock Crítico (Opcional)</label>
+                    <input type="number" id="product-critical-stock" name="product-critical-stock" min="0">
+                    <div id="product-critical-stock-error" class="error-message"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="product-description">Descripción</label>
+                    <textarea id="product-description" name="product-description" rows="4"></textarea>
+                    <div id="product-description-error" class="error-message"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="product-image">URL de la Imagen</label>
+                    <input type="text" id="product-image" name="product-image" placeholder="https://...">
+                    <div id="product-image-error" class="error-message"></div>
+                </div>
+                
+                <div class="modal-actions">
+                    <button type="button" class="btn-admin btn-secondary" id="cancel-btn">Cancelar</button>
+                    <button type="submit" class="btn-admin btn-primary">Guardar Producto</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Verificar si está logueado
+        if (localStorage.getItem('adminLoggedIn') !== 'true') {
+            window.location.href = 'login.html';
+        }
+        
+        // Datos de ejemplo
+        const products = [
+            { id: 1, name: "PlayStation 5", category: "consolas", price: 549990, stock: 3, criticalStock: 5, description: "Consola de última generación", image: "../img/ps5.jpg" },
+            { id: 2, name: "Xbox Series X", category: "consolas", price: 499990, stock: 15, criticalStock: 5, description: "La consola más poderosa", image: "../img/xbox.jpg" },
+            { id: 3, name: "Catan", category: "juegos-mesa", price: 29990, stock: 22, criticalStock: 10, description: "Juego de estrategia", image: "../img/catan.jpg" },
+            { id: 4, name: "Mouse Gamer Logitech", category: "mouse", price: 49990, stock: 5, criticalStock: 5, description: "Mouse de alta precisión", image: "../img/mouse-gamer.jpg" },
+            { id: 5, name: "Silla Gamer SecretLab", category: "sillas", price: 349990, stock: 8, criticalStock: 3, description: "Silla ergonómica para gaming", image: "../img/silla-gamer.jpg" },
+            { id: 6, name: "Auriculares HyperX Cloud II", category: "accesorios", price: 79990, stock: 2, criticalStock: 5, description: "Auriculares con sonido surround", image: "../img/auriculares.jpg" }
+        ];
+        
+        // Cargar productos en la tabla
+        function loadProducts() {
+            const tableBody = document.getElementById('products-table-body');
+            tableBody.innerHTML = '';
+            
+            products.forEach(product => {
+                const stockClass = product.stock <= 0 ? 'stock-critical' : 
+                                 product.stock <= product.criticalStock ? 'stock-low' : 'stock-ok';
+                const stockText = product.stock <= 0 ? 'Agotado' : 
+                                 product.stock <= product.criticalStock ? 'Bajo' : 'Disponible';
+                
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${product.id}</td>
+                    <td>${product.name}</td>
+                    <td>${getCategoryName(product.category)}</td>
+                    <td>$${product.price.toLocaleString('es-CL')}</td>
+                    <td class="${stockClass}">${product.stock} unidades</td>
+                    <td class="${stockClass}">${stockText}</td>
+                    <td>
+                        <div class="table-actions">
+                            <button class="btn-action btn-edit" data-id="${product.id}">Editar</button>
+                            <button class="btn-action btn-delete" data-id="${product.id}">Eliminar</button>
+                        </div>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+            
+            // Agregar eventos a los botones
+            document.querySelectorAll('.btn-edit').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const productId = parseInt(this.getAttribute('data-id'));
+                    editProduct(productId);
+                });
+            });
+            
+            document.querySelectorAll('.btn-delete').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const productId = parseInt(this.getAttribute('data-id'));
+                    deleteProduct(productId);
+                });
+            });
+        }
+        
+        // Obtener nombre de categoría
+        function getCategoryName(category) {
+            const categories = {
+                'juegos-mesa': 'Juegos de Mesa',
+                'accesorios': 'Accesorios',
+                'consolas': 'Consolas',
+                'computadores': 'Computadores',
+                'sillas': 'Sillas',
+                'mouse': 'Mouse',
+                'mousepad': 'Mousepad',
+                'poleras': 'Poleras'
+            };
+            return categories[category] || category;
+        }
+        
+        // Abrir modal para nuevo producto
+        document.getElementById('add-product-btn').addEventListener('click', function() {
+            document.getElementById('modal-title').textContent = 'Nuevo Producto';
+            document.getElementById('product-form').reset();
+            document.getElementById('product-id').value = '';
+            document.getElementById('product-modal').style.display = 'flex';
+        });
+        
+        // Cerrar modal
+        document.getElementById('close-modal').addEventListener('click', closeModal);
+        document.getElementById('cancel-btn').addEventListener('click', closeModal);
+        
+        function closeModal() {
+            document.getElementById('product-modal').style.display = 'none';
+        }
+        
+        // Editar producto
+        function editProduct(id) {
+            const product = products.find(p => p.id === id);
+            if (!product) return;
+            
+            document.getElementById('modal-title').textContent = 'Editar Producto';
+            document.getElementById('product-id').value = product.id;
+            document.getElementById('product-name').value = product.name;
+            document.getElementById('product-category').value = product.category;
+            document.getElementById('product-price').value = product.price;
+            document.getElementById('product-stock').value = product.stock;
+            document.getElementById('product-critical-stock').value = product.criticalStock || '';
+            document.getElementById('product-description').value = product.description || '';
+            document.getElementById('product-image').value = product.image || '';
+            
+            document.getElementById('product-modal').style.display = 'flex';
+        }
+        
+        // Eliminar producto
+        function deleteProduct(id) {
+            if (confirm('¿Estás seguro de que quieres eliminar este producto?')) {
+                const index = products.findIndex(p => p.id === id);
+                if (index !== -1) {
+                    products.splice(index, 1);
+                    loadProducts();
+                    alert('Producto eliminado correctamente');
+                }
+            }
+        }
+        
+        // Guardar producto (nuevo o editado)
+        document.getElementById('product-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const id = document.getElementById('product-id').value;
+            const name = document.getElementById('product-name').value;
+            const category = document.getElementById('product-category').value;
+            const price = parseFloat(document.getElementById('product-price').value);
+            const stock = parseInt(document.getElementById('product-stock').value);
+            const criticalStock = document.getElementById('product-critical-stock').value ? 
+                                 parseInt(document.getElementById('product-critical-stock').value) : null;
+            const description = document.getElementById('product-description').value;
+            const image = document.getElementById('product-image').value;
+            
+            if (id) {
+                // Editar producto existente
+                const index = products.findIndex(p => p.id === parseInt(id));
+                if (index !== -1) {
+                    products[index] = {
+                        ...products[index],
+                        name,
+                        category,
+                        price,
+                        stock,
+                        criticalStock,
+                        description,
+                        image
+                    };
+                }
+            } else {
+                // Nuevo producto
+                const newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
+                products.push({
+                    id: newId,
+                    name,
+                    category,
+                    price,
+                    stock,
+                    criticalStock,
+                    description,
+                    image
+                });
+            }
+            
+            loadProducts();
+            closeModal();
+            alert(`Producto ${id ? 'actualizado' : 'agregado'} correctamente`);
+        });
+        
+        // Cerrar sesión
+        document.getElementById('logout-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            localStorage.removeItem('adminLoggedIn');
+            window.location.href = 'login.html';
+        });
+        
+        // Cargar productos al iniciar
+        document.addEventListener('DOMContentLoaded', loadProducts);
+    </script>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogs - Level-Up Gamer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .blogs-section {
+            padding: 4rem 0;
+        }
+        
+        .blogs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .blog-card {
+            background-color: #1a1a1a;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .blog-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .blog-info {
+            padding: 1.5rem;
+        }
+        
+        .blog-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent-blue);
+        }
+        
+        .blog-date {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .blog-excerpt {
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+        }
+        
+        .read-more {
+            display: inline-block;
+            color: var(--accent-green);
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .read-more:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>LEVEL-UP GAMER</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="productos.html">Productos</a></li>
+                    <li><a href="nosotros.html">Nosotros</a></li>
+                    <li><a href="blogs.html" class="active">Blogs</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </nav>
+            <div class="user-cart">
+                <a href="carrito.html" class="cart">Carrito (<span id="cart-count">0</span>)</a>
+                <a href="login.html" class="login">Iniciar Sesión</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="blogs-section">
+            <div class="container">
+                <h2>Noticias y Blog</h2>
+                <p>Mantente actualizado con las últimas novedades del mundo gamer</p>
+                
+                <div class="blogs-grid">
+                    <div class="blog-card">
+                        <img src="img/juegos_nuevos.png" alt="Nuevos lanzamientos" class="blog-image">
+                        <div class="blog-info">
+                            <h3 class="blog-title">Los juegos más esperados del 2026</h3>
+                            <p class="blog-date">14 de septiembre, 2025</p>
+                            <p class="blog-excerpt">Descubre los títulos más anticipados que llegarán este año a todas las plataformas seeee</p>
+                            <a href="detalle-blog.html?id=1" class="read-more">Leer más</a>
+                        </div>
+                    </div>
+                    
+                    <div class="blog-card">
+                        <img src="img/reparacion.jpeg" alt="Consejos para gamers" class="blog-image">
+                        <div class="blog-info">
+                            <h3 class="blog-title">Cómo mejorar tu setup gamer con poco presupuesto</h3>
+                            <p class="blog-date">8 de Marzo, 2024</p>
+                            <p class="blog-excerpt">Consejos prácticos y económicos para elevar tu experiencia de juego sin gastar fortunas...</p>
+                            <a href="detalle-blog.html?id=2" class="read-more">Leer más</a>
+                        </div>
+                    </div>
+                    
+                    <div class="blog-card">
+                        <img src="img/blog3.jpg" alt="Torneos gaming" class="blog-image">
+                        <div class="blog-info">
+                            <h3 class="blog-title">Torneos de eSports en Chile: Calendario 2024</h3>
+                            <p class="blog-date">1 de Marzo, 2024</p>
+                            <p class="blog-excerpt">No te pierdas los eventos competitivos más importantes que se realizarán en el país este año...</p>
+                            <a href="detalle-blog.html?id=3" class="read-more">Leer más</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-section">
+                <h3>LEVEL-UP GAMER</h3>
+                <p>Tu tienda online de confianza para productos Gamerrs</p>
+            </div>
+            <div class="footer-section">
+                <h4>Enlaces Rápidos</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="productos.html">Productos</a></li>
+                    <li><a href="nosotros.html">Nosotros</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <p>email: contacto@levelupgamer.cl</p>
+                <p>Teléfono: +56 9 1234 5678</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 Level-Up Gamer. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

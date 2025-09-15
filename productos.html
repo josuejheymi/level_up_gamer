@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos - Level-Up Gamer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>LEVEL-UP GAMER</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="productos.html" class="active">Productos</a></li>
+                    <li><a href="nosotros.html">Nosotros</a></li>
+                    <li><a href="blogs.html">Blogs</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </nav>
+            <div class="user-cart">
+                <a href="carrito.html" class="cart">Carrito (<span id="cart-count">0</span>)</a>
+                <a href="login.html" class="login">Iniciar Sesión</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="products-section">
+            <div class="container">
+                <h2>Nuestros Productos</h2>
+                
+                <div class="filters">
+                    <select id="categoria-filter">
+                        <option value="">Todas las categorías</option>
+                        <option value="juegos-mesa">Juegos de Mesa</option>
+                        <option value="accesorios">Accesorios</option>
+                        <option value="consolas">Consolas</option>
+                        <option value="computadores">Computadores Gamers</option>
+                        <option value="sillas">Sillas Gamers</option>
+                        <option value="mouse">Mouse</option>
+                        <option value="mousepad">Mousepad</option>
+                        <option value="poleras">Poleras Personalizadas</option>
+                    </select>
+                    
+                    <input type="text" id="search" placeholder="Buscar productos...">
+                </div>
+                
+                <div class="products-grid" id="products-grid">
+                    <!-- Los productos se cargarán con JavaScript -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-section">
+                <h3>LEVEL-UP GAMER</h3>
+                <p>Tu tienda online de confianza para productos gamers</p>
+            </div>
+            <div class="footer-section">
+                <h4>Enlaces Rápidos</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="productos.html">Productos</a></li>
+                    <li><a href="nosotros.html">Nosotros</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <p>email: contacto@levelupgamer.cl</p>
+                <p>Teléfono: +56 9 1234 5678</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2024 Level-Up Gamer. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="js/productos.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
